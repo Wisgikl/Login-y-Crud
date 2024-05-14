@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useTasks } from "../context/TaskContext";
+import { useNavigate } from "react-router-dom";
 export const TaskFormPage = () => {
   const { register, handleSubmit } = useForm();
   const { createTask } = useTasks();
+  const navigate = useNavigate();
   const onSubmit = handleSubmit((data) => {
     createTask(data);
+    navigate("/tasks");
   });
   return (
     <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md ">

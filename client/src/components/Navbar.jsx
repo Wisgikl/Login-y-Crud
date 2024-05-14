@@ -4,7 +4,7 @@ export const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
   console.log(user);
   return (
-    <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10">
+    <nav className="bg-zinc-700 my-3 flex justify-between py-5 px-10 rounded-md">
       <Link to={"/"}>
         <h1 className="text-2xl font-bold">Task Manager</h1>
       </Link>
@@ -13,10 +13,16 @@ export const Navbar = () => {
           <>
             <li>Welcome {user.username}</li>
             <li>
-              <Link to="/add-task">Add Task</Link>
+              <Link
+                to="/add-task"
+                className="bg-green-500 px-4 py-1 rounded-sm"
+              >
+                Add Task
+              </Link>
             </li>
             <li>
               <Link
+                className="bg-red-500 px-4 py-1 rounded-sm"
                 to="/"
                 onClick={() => {
                   logout();
@@ -29,10 +35,17 @@ export const Navbar = () => {
         ) : (
           <>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login" className="bg-indigo-500 px-4 py-1 rounded-sm">
+                Login
+              </Link>
             </li>
             <li>
-              <Link to="/register">Register</Link>
+              <Link
+                to="/register"
+                className="bg-indigo-500 px-4 py-1 rounded-sm"
+              >
+                Register
+              </Link>
             </li>
           </>
         )}
