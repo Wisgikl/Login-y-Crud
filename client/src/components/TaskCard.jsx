@@ -1,5 +1,8 @@
 import { useTasks } from "../context/TaskContext";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import utc from "dayjs";
+dayjs.extend(utc);
 export const TaskCard = ({ task }) => {
   const { deleteTask, getTask } = useTasks();
   return (
@@ -8,17 +11,23 @@ export const TaskCard = ({ task }) => {
         <h1 className="text-2xl font-bold:">{task.title}</h1>
         <div className="flex gap-x-2 items-center">
           <button
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
             onClick={() => {
               deleteTask(task._id);
             }}
           >
             delete
           </button>
-          <Link to={`/tasks/${task._id}`}>edit</Link>
+          <Link
+            to={`/tasks/${task._id}`}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+          >
+            edit
+          </Link>
         </div>
       </header>
       <p className="text-slate-300">{task.description}</p>
-      <p>{new Date(task.date).toLocaleDateString()}</p>
+      <p>{dayjs(task.date).utc().format("DD/MM/YYYY")}</p>
     </div>
   );
 };
